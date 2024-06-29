@@ -189,5 +189,29 @@ resource "aws_network_acl" "test-db-nacl" {
 
 
 
+# nacl and subnet web assosiation
+
+resource "aws_network_acl_association" "test-nacl-sub-web-asc" {
+  network_acl_id = aws_network_acl.test-web-nacl.id
+  subnet_id      = aws_subnet.test-web-sub.id
+}
+
+# nacl and subnet api assosiation
+
+resource "aws_network_acl_association" "test-nacl-sub-api-asc" {
+  network_acl_id = aws_network_acl.test-api-nacl.id
+  subnet_id      = aws_subnet.test-api-sub.id
+}
+
+# nacl and subnet db assosiation
+
+resource "aws_network_acl_association" "test-nacl-sub-db-asc" {
+  network_acl_id = aws_network_acl.test-db-nacl.id
+  subnet_id      = aws_subnet.test-db-sub.id
+}
+
+
+
+
 
 
