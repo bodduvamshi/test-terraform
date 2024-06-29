@@ -54,5 +54,31 @@ resource "aws_internet_gateway" "test-ig" {
   }
 }
 
+#Public route tables creation
+
+resource "aws_route_table" "test-pub-rt" {
+  vpc_id = aws_vpc.test-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.test-ig.id
+  }
+
+  tags = {
+    Name = "public-route-tables"
+  }
+}
+
+#private route tables creation
+
+resource "aws_route_table" "test-pri-rt" {
+  vpc_id = aws_vpc.test-vpc.id
+
+  tags = {
+    Name = "private-route-tables"
+  }
+}
+
+
 
 
