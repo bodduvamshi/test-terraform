@@ -80,5 +80,28 @@ resource "aws_route_table" "test-pri-rt" {
 }
 
 
+# route table assosiation to web subnet
+
+resource "aws_route_table_association" "test-web-rt-asc" {
+  subnet_id      = aws_subnet.test-web-sub.id
+  route_table_id = aws_route_table.test-pub-rt.id
+}
+
+# route table assosiation to api subnet
+
+resource "aws_route_table_association" "test-api-rt-asc" {
+  subnet_id      = aws_subnet.test-api-sub.id
+  route_table_id = aws_route_table.test-pub-rt.id
+}
+
+# route table assosiation to db subnet
+
+resource "aws_route_table_association" "test-db-rt-asc" {
+  subnet_id      = aws_subnet.test-db-sub.id
+  route_table_id = aws_route_table.test-pri-rt.id
+}
+
+
+
 
 
