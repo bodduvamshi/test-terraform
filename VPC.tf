@@ -102,6 +102,92 @@ resource "aws_route_table_association" "test-db-rt-asc" {
 }
 
 
+# NACL web creataion
+
+resource "aws_network_acl" "test-web-nacl" {
+  vpc_id = aws_vpc.test-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "test-web-nacl"
+  }
+}
+
+#NACL api creataion
+
+resource "aws_network_acl" "test-api-nacl" {
+  vpc_id = aws_vpc.test-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "test-api-nacl"
+  }
+}
+
+
+#NACL db creataion
+
+resource "aws_network_acl" "test-db-nacl" {
+  vpc_id = aws_vpc.test-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "test-db-nacl"
+  }
+}
+
+
 
 
 
