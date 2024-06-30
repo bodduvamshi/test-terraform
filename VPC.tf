@@ -238,7 +238,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-http" {
   to_port           = 80
 }
 
-resource "aws_vpc_security_group_egress_rule" "atest-web-sg-egress" {
+resource "aws_vpc_security_group_egress_rule" "test-web-sg-egress" {
   security_group_id = aws_security_group.test-web-sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
@@ -273,7 +273,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-nodejs" {
   to_port           = 8080
 }
 
-resource "aws_vpc_security_group_egress_rule" "atest-api-sg-egress" {
+resource "aws_vpc_security_group_egress_rule" "test-api-sg-egress" {
   security_group_id = aws_security_group.test-api-sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
@@ -309,7 +309,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-postgress" {
   to_port           = 5432
 }
 
-resource "aws_vpc_security_group_egress_rule" "atest-db-sg-egress" {
+resource "aws_vpc_security_group_egress_rule" "test-db-sg-egress" {
   security_group_id = aws_security_group.test-db-sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # semantically equivalent to all ports
