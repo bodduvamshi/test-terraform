@@ -210,8 +210,108 @@ resource "aws_network_acl_association" "test-nacl-sub-db-asc" {
   subnet_id      = aws_subnet.test-db-sub.id
 }
 
+# web security group creation 
+
+resource "aws_security_group" "test-web-sg" {
+  name        = "test-web-sg"
+  description = "Allow ssh traffic and http traffic"
+  vpc_id      = aws_vpc.test-vpc.id
+
+  tags = {
+    Name = "test-web-sg-ssh-http"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-ssh" {
+  security_group_id = aws_security_group.test-web-sg.id
+  cidr_ipv4         = 0.0.0.0/0
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-http" {
+  security_group_id = aws_security_group.test-web-sg.id
+  cidr_ipv4         = 0.0.0.0/0
+  from_port         = 80
+  ip_protocol       = "tcp"
+  to_port           = 80
+}
+
+resource "aws_vpc_security_group_egress_rule" "atest-web-sg-egress" {
+  security_group_id = aws_security_group.test-web-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
+
+
+# api security group creation 
+
+resource "aws_security_group" "test-api-sg" {
+  name        = "test-api-sg"
+  description = "Allow ssh traffic and nodejs traffic"
+  vpc_id      = aws_vpc.test-vpc.id
+
+  tags = {
+    Name = "test-api-sg-ssh-nodejs"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-api-sg-ingress-ssh" {
+  security_group_id = aws_security_group.test-api-sg.id
+  cidr_ipv4         = 0.0.0.0/0
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-nodejs" {
+  security_group_id = aws_security_group.test-api-sg.id
+  cidr_ipv4         = 0.0.0.0/0
+  from_port         = 8080
+  ip_protocol       = "tcp"
+  to_port           = 8080
+}
+
+resource "aws_vpc_security_group_egress_rule" "atest-api-sg-egress" {
+  security_group_id = aws_security_group.test-api-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
 
 
 
+# db security group creation 
 
+resource "aws_security_group" "test-db-sg" {
+  name        = "test-db-sg"
+  description = "Allow ssh traffic and postgress traffic"
+  vpc_id      = aws_vpc.test-vpc.id
+
+  tags = {
+    Name = "test-db-sg-ssh-postgress"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-db-sg-ingress-ssh" {
+  security_group_id = aws_security_group.test-db-sg.id
+  cidr_ipv4         = 0.0.0.0/0
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-postgress" {
+  security_group_id = aws_security_group.test-db-sg.id
+  cidr_ipv4         = 10.0.0.0/16
+  from_port         = 5432
+  ip_protocol       = "tcp"
+  to_port           = 5432
+}
+
+resource "aws_vpc_security_group_egress_rule" "atest-db-sg-egress" {
+  security_group_id = aws_security_group.test-db-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
 
