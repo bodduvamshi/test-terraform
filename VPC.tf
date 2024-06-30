@@ -224,7 +224,7 @@ resource "aws_security_group" "test-web-sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-ssh" {
   security_group_id = aws_security_group.test-web-sg.id
-  cidr_ipv4         = 0.0.0.0/0
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -232,7 +232,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-ssh" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-http" {
   security_group_id = aws_security_group.test-web-sg.id
-  cidr_ipv4         = 0.0.0.0/0
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 80
   ip_protocol       = "tcp"
   to_port           = 80
@@ -259,7 +259,7 @@ resource "aws_security_group" "test-api-sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-api-sg-ingress-ssh" {
   security_group_id = aws_security_group.test-api-sg.id
-  cidr_ipv4         = 0.0.0.0/0
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -267,7 +267,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-api-sg-ingress-ssh" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-nodejs" {
   security_group_id = aws_security_group.test-api-sg.id
-  cidr_ipv4         = 0.0.0.0/0
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 8080
   ip_protocol       = "tcp"
   to_port           = 8080
@@ -295,7 +295,7 @@ resource "aws_security_group" "test-db-sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-db-sg-ingress-ssh" {
   security_group_id = aws_security_group.test-db-sg.id
-  cidr_ipv4         = 10.0.0.0/16
+  cidr_ipv4         = "10.0.0.0/16"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -303,7 +303,7 @@ resource "aws_vpc_security_group_ingress_rule" "test-db-sg-ingress-ssh" {
 
 resource "aws_vpc_security_group_ingress_rule" "test-web-sg-ingress-postgress" {
   security_group_id = aws_security_group.test-db-sg.id
-  cidr_ipv4         = 10.0.0.0/16
+  cidr_ipv4         = "10.0.0.0/16"
   from_port         = 5432
   ip_protocol       = "tcp"
   to_port           = 5432
