@@ -1,1 +1,15 @@
-terraform.tfvars
+# terraform.tfvars
+# .gitignore
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*.tfvars
+.terraform/
+*.tfstate
+*.tfvars
+crash.log
+.terraform/
+*.zip
