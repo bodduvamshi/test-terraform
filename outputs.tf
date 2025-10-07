@@ -1,16 +1,15 @@
-resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
-  location = var.location
-}
-
 output "resource_group_id" {
-  value = azurerm_resource_group.example.id
+  value = azurerm_resource_group.main.id
 }
 
-output "resource_group_name" {
-  value = azurerm_resource_group.example.name
+output "vnet_id" {
+  value = module.network.vnet_id
 }
 
-output "location" {
-  value = azurerm_resource_group.example.location
+output "vm_id" {
+  value = module.compute.vm_id
+}
+
+output "nsg_id" {
+  value = module.security.nsg_id
 }

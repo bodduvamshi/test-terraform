@@ -1,11 +1,17 @@
+variable "resource_group_name" {
+  type = string
+}
+
+variable "location" {
+  type = string
+}
+
 variable "nsg_name" {
-  description = "The name of the Network Security Group."
-  type        = string
+  type = string
 }
 
 variable "security_rules" {
-  description = "A list of security rules to be applied to the NSG."
-  type        = list(object({
+  type = list(object({
     name                       = string
     priority                   = number
     direction                  = string
